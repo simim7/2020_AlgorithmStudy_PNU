@@ -1,4 +1,4 @@
-//  메모리  시간    코드길이 
+//  memory  time    code length 
 //  4880KB  40ms    1812B
 #include <iostream>
 #include <string>
