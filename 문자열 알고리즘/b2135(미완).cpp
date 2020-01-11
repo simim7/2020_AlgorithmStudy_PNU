@@ -1,11 +1,11 @@
-#include <iostream>
+#include <iostream> 
 #include <vector>
 #include <tuple>
 #include <stdlib.h>
 #include <algorithm>
 
 using namespace std;
-//ºÎ·çÅõ·ÎÇØºÎÀÚ
+//ë¶€ë£¨íˆ¬ë¡œí•´ë¶€ì
 vector< pair<tuple<int,int,int>, string> > chunk_idx_vec;
 //map<string, int> chunk_num_map;
 string s;
@@ -39,7 +39,7 @@ void get_chunks_with_size(int chunk_size){
 		
 			dup_count++;
 			
-			if(idx + chunk_size > max_idx){ // ´õ ÀÌ»ó ÇÕÄ¥ °Ô ¾øÀ» ¶§ 
+			if(idx + chunk_size > max_idx){ // ë” ì´ìƒ í•©ì¹  ê²Œ ì—†ì„ ë•Œ 
 //				cout << idx+chunk_size << " " <<max_idx<<endl;
 //				cout << dup_chunk.size() <<  " " << dup_count<<endl;
 				if( (dup_chunk.size()==1 && dup_count  > 4) || dup_chunk.size() > 1) {
