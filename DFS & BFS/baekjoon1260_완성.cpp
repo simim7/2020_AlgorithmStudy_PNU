@@ -34,7 +34,7 @@ bool is_visit( vector<int> visit, int vertex ) {
 }
 
 void setData() {
-	int start, end;
+	int start,end;
 	for(int i=0; i<edge_N; i++) {
 		cin >> start >> end;
 		
