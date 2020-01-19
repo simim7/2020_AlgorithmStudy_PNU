@@ -1,4 +1,4 @@
-/* ¹éÁØ1260¹ø   ½Ã°£: 24ms */
+/* ë°±ì¤€1260ë²ˆ   ì‹œê°„: 24ms */
 #include <iostream>
 #include <array>
 #include <list>
@@ -18,19 +18,12 @@ void BFS();
 int main(void) {
 	cin >> vertex_N >> edge_N >> startpoint;
 	
-	setData();	// ÀÎÁ¢Çà·Ä ÇüÅÂ·Î ¸¸µê 
+	setData();	// ì¸ì ‘í–‰ë ¬ í˜•íƒœë¡œ ë§Œë“¦ 
 
 	DFS();
 	BFS();
 	
 	return 0;
-}
-
-bool is_exist_in_list( int start, int end ) {	 
-	for( auto s: maplist[start] ) {
-		if( s == end )	{ return true; }
-	}
-	return false;
 }
 
 bool is_visit( vector<int> visit, int vertex ) {
@@ -44,39 +37,36 @@ void setData() {
 	int start, end;
 	for(int i=0; i<edge_N; i++) {
 		cin >> start >> end;
-		if( !is_exist_in_list( start, end ) ) {	
-			maplist[start].push_back(end);		// ÀÔ·Â¹ŞÀº edge Ãß°¡
-		}
-		if( !is_exist_in_list( end, start ) ) {
-			maplist[end].push_back(start);		// edge´Â ¿Õº¹ÀÓÀ» °í·Á 
-		}
+		
+		maplist[start].push_back(end);		// ì…ë ¥ë°›ì€ edge ì¶”ê°€
+		maplist[end].push_back(start);		// edgeëŠ” ì™•ë³µì„ì„ ê³ ë ¤ 
 	}
-	// for(auto s: maplist)	{ s.sort(); }	// ¿Ö Á¤·Ä ¾ÈµÇ´ÂÁö ¸ğ¸£°ÚÀ½
-	for(int i=0; i<maplist.size(); i++) {	maplist[i].sort(); }	// list ¿À¸§Â÷¼ø Á¤·Ä(¿ì¼±¼øÀ§ °í·Á) 
+	
+	for(int i=0; i<maplist.size(); i++) {	maplist[i].sort(); }	// list ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬(ìš°ì„ ìˆœìœ„ ê³ ë ¤) 
 }
 
 void DFS() {
 	stack < int > stack;
 	vector< int > visit;
 	
-	stack.push(startpoint);				// ½ÃÀÛ Á¤Á¡ ³ÖÀ½ 
+	stack.push(startpoint);				// ì‹œì‘ ì •ì  ë„£ìŒ 
 	visit.push_back(startpoint);
 
 	while( !stack.empty() ) {
-		int target = stack.top();		// Å¸°Ù(Ãâ¹ß Á¤Á¡)Àº stackÀÇ top¿ø¼Ò 
-		list< int > sublist = maplist[target];	// Å¸°Ù Á¤Á¡°ú ¿¬°áµÈ Á¤Á¡list 
+		int target = stack.top();		// íƒ€ê²Ÿ(ì¶œë°œ ì •ì )ì€ stackì˜ topì›ì†Œ 
+		list< int > sublist = maplist[target];	// íƒ€ê²Ÿ ì •ì ê³¼ ì—°ê²°ëœ ì •ì list 
 		list< int >:: iterator iter;
 		
 		for(iter = sublist.begin(); iter != sublist.end(); iter++) {	
-			if( !is_visit( visit, *iter ) ) {	// ³ª¾Æ°¥ °÷ÀÌ ÀÖÀ¸¸é 
-				target = *iter;					// ³ª¾Æ°¡¼­ Å¸°Ù º¯°æ 
+			if( !is_visit( visit, *iter ) ) {	// ë‚˜ì•„ê°ˆ ê³³ì´ ìˆìœ¼ë©´ 
+				target = *iter;					// ë‚˜ì•„ê°€ì„œ íƒ€ê²Ÿ ë³€ê²½ 
 				stack.push(target);
 				visit.push_back(target);
 				break;
 			}
 		}
-		if( iter == sublist.end() ) {	// ³ª¾Æ°¥ °÷ÀÌ ¾øÀ¸¸é 
-			stack.pop();				// stack¿¡¼­ Á¦°Å 
+		if( iter == sublist.end() ) {	// ë‚˜ì•„ê°ˆ ê³³ì´ ì—†ìœ¼ë©´ 
+			stack.pop();				// stackì—ì„œ ì œê±° 
 		}
 	}
 	
