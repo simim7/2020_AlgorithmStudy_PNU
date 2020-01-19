@@ -1,4 +1,5 @@
 //time 0ms
+
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -79,8 +80,6 @@ class GraphPaperChecker {
     }
 
     int calculateArea(const int x, const int y) {
-        cout <<"in calculateArea()" << endl;
-        cout << "checking route"  <<endl;
         bool isStartChecked = !checker[y][x];
         if(isStartChecked)
             return 0;
@@ -90,7 +89,6 @@ class GraphPaperChecker {
         stack<Point> PointsInDomain;
         bool isDone = false;
         while(!isDone) {
-            cout << "(" << currentX<< "," << currentY<<")"<<endl;
             bool isInDomain = checker[currentY][currentX];
             if(isInDomain) {
                 checker[currentY][currentX] = false;
@@ -130,13 +128,11 @@ class GraphPaperChecker {
                 }
             }
         }
-        cout << "in calculateAreas checker made" << endl;
         for(int y =1; y<height+2; ++y)
             for(int x= 1; x<width+2; ++x) {
                 const int area = calculateArea(x,y);
                 if(area > 0)
                     areas.push_back(area);
-                cout << "(" << x << "," << y <<") is calculated" << endl;
             }
         return areas;
     }
@@ -161,11 +157,9 @@ int main(void) {
         rectangles.at(i).second = Point(x,y);
     }
     GraphPaper graphPaper(height,width,rectangles);
-    cout << "graphPaper made" << endl;
     GraphPaperChecker graphPaperChecker;
-    cout << "checker made" << endl;
     vector<int> areas(graphPaperChecker.calculateAreas(graphPaper));
-    cout << "area calculated" <<endl;
+
     cout << areas.size() << endl;
     sort(areas.begin(),areas.end());
     for(int i=0; i<areas.size(); ++i) {
