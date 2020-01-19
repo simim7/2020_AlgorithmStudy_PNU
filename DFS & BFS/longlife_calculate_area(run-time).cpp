@@ -21,10 +21,10 @@ bool is_left_edge(int j){
 	return j == 0;
 }
 bool is_bottom_edge(int i,vector<row>& paper){
-	return i == paper.size();
+	return i == paper.size()-1;
 }
 bool is_right_edge(int j,vector<row>& paper){
-	return j == paper[0].size();
+	return j == paper[0].size()-1;
 }
 void follow_left(vector<row>& paper, int i, int j, vector<int>& area)
 {
@@ -172,23 +172,23 @@ int main(void)
 
 	vector<rectangle> list_rect(K);
 	for(int i=0;i<K;++i){
-		cin >> list_rect[i].first.first >> list_rect[i].first.second; 	// ÁÂÇÏ ²ÀÁşÁ¡ 
-		cin >> list_rect[i].second.first >> list_rect[i].second.second; // ¿ì»ó ²ÀÁşÁ¡ 
+		cin >> list_rect[i].first.first >> list_rect[i].first.second; 	// ì¢Œí•˜ ê¼­ì§“ì  
+		cin >> list_rect[i].second.first >> list_rect[i].second.second; // ìš°ìƒ ê¼­ì§“ì  
 	}
 	
-	vector<rectangle> new_list_rect(K);  // ³»°¡ º¸´Â °üÁ¡À¸·Î ÁÂÇ¥°ª º¯°æ  
+	vector<rectangle> new_list_rect(K);  // ë‚´ê°€ ë³´ëŠ” ê´€ì ìœ¼ë¡œ ì¢Œí‘œê°’ ë³€ê²½  
 	for(int i=0;i<K;++i){
-		new_list_rect[i].first.first = (M-1)-list_rect[i].first.second; // ÁÂÇÏ x
-		new_list_rect[i].first.second = list_rect[i].first.first; 		// ÁÂÇÏ y
-		new_list_rect[i].second.first = M-list_rect[i].second.second; 	// ¿ì»ó x
-		new_list_rect[i].second.second = list_rect[i].second.first-1; 	// ¿ì»ó x 
+		new_list_rect[i].first.first = (M-1)-list_rect[i].first.second; // ì¢Œí•˜ x
+		new_list_rect[i].first.second = list_rect[i].first.first; 		// ì¢Œí•˜ y
+		new_list_rect[i].second.first = M-list_rect[i].second.second; 	// ìš°ìƒ x
+		new_list_rect[i].second.second = list_rect[i].second.first-1; 	// ìš°ìƒ x 
 	}
 
 	
 	vector<row> paper(M,row(N,111));
 	vector<int> area;
 
-	// ÁÖ¾îÁø Á÷»ç°¢Çü Ç¥½Ã 
+	// ì£¼ì–´ì§„ ì§ì‚¬ê°í˜• í‘œì‹œ 
 	for(int i=0;i<new_list_rect.size();++i)
 		for(int j=new_list_rect[i].second.first;j<=new_list_rect[i].first.first;++j)
 			for(int k=new_list_rect[i].first.second;k<=new_list_rect[i].second.second;++k)
