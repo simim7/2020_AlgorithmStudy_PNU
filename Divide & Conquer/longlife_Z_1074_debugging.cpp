@@ -38,10 +38,10 @@ void find_order(vector< line >& digits, int x, int y, int sz)
 	}
 	else{
 		sz /= 2;
-		find_order(digits,x,y,sz);				// 1) ÁÂ»ó 
-		find_order(digits,x,y+sz,sz);			// 2) ¿ì»ó
-		find_order(digits,x+sz,y,sz);			// 3) ÁÂÇÏ 
-		find_order(digits,x+sz,y+sz,sz);		// 4) ¿ìÇÏ
+		find_order(digits,x,y,sz);				// 1) ÃÃ‚Â»Ã³ 
+		find_order(digits,x,y+sz,sz);			// 2) Â¿Ã¬Â»Ã³
+		find_order(digits,x+sz,y,sz);			// 3) ÃÃ‚Ã‡Ã 
+		find_order(digits,x+sz,y+sz,sz);		// 4) Â¿Ã¬Ã‡Ã
 		cout << endl;
 		return ;
 	}
@@ -81,3 +81,4 @@ int main(void)
 	 
 	return 0;
 }
+ 
