@@ -1,16 +1,15 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <math.h>
 
 using namespace std;
 
 typedef vector<int> line;
+typedef unsigned short us;
 
-int row, col, order;
+us row, col, order;
 bool is_find = false;
 
-void find_order(int x, int y, int sz)
+void find_order(us x, us y, us sz)
 {
 	vector< line > *digits = new vector< line >(sz,line(sz));
 	if(is_find){
@@ -29,10 +28,10 @@ void find_order(int x, int y, int sz)
 	}
 	else{
 		sz /= 2;
-		find_order(x,y,sz);				// 1) ÁÂ»ó 
-		find_order(x,y+sz,sz);			// 2) ¿ì»ó
-		find_order(x+sz,y,sz);			// 3) ÁÂÇÏ 
-		find_order(x+sz,y+sz,sz);		// 4) ¿ìÇÏ
+		find_order(x,y,sz);			// 1) ìƒì¢Œ 
+		find_order(x,y+sz,sz);			// 2) ìƒìš° 
+		find_order(x+sz,y,sz);			// 3) í•˜ì¢Œ 
+		find_order(x+sz,y+sz,sz);		// 4) í•˜ìš° 
 		delete digits;
 		return ;
 	}
@@ -41,9 +40,10 @@ void find_order(int x, int y, int sz)
 
 int main(void)
 {
-	int N, cnt=0;
+	us N, sz=2, cnt=0;
 	cin >> N >> row >> col;
-	double sz = pow((double)2,(double)N);
+	for(us i=0;i<N;++i)
+		sz*=2;
 	
 	find_order(0,0,sz);
 	cout << order << endl;
