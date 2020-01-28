@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+const int Max = 2188;
+int paper[Max][Max];
+
+int N;
+int ans[3];
+
+
+void div_check(int N, int x, int y){
+   if( N == 1)
+   {
+      if(paper[x][y] == 0)
+         ans[0]++;
+      if(paper[x][y] == 1)
+         ans[1]++;
+      if(paper[x][y] == -1)
+         ans[2]++;
+      return;
+   }
+   bool same[3] = {true,true,true};
+   
+   for(int i = x; i < x + N ; i++)
+      for(int j = y; j <y + N ; j++){
+         if(paper[i][j] == 0)
+         {
+            same[1] = false;
+            same[2] = false;
+         }
+         else if(paper[i][j] == 1)
+         {
+            same[0] = false;
+            same[2] = false;
+         }
+         else
+         {
+            same[0] = false;
+            same[1] = false;
+         }
+      }
+         
+   if(same[0])
+      ans[0]++;
+   else if(same[1])
+      ans[1]++;
+   else if(same[2])
+      ans[2]++;
+   else{
+      int M = N/3;
+      div_check(M,x,y);
+      div_check(M,x,y+M);
+      div_check(M,x,y+M+M);
+      
+      div_check(M,x+M,y);
+      div_check(M,x+M,y+M);
+      div_check(M,x+M,y+M+M);
+      
+      div_check(M,x+M+M,y);
+      div_check(M,x+M+M,y+M);
+      div_check(M,x+M+M,y+M+M);   
+   }
+   return;
+}
+
+
+int main (void)
+{
+
+   int N;
+   
+   cin >> N;
+   
+   for(int i = 0 ; i < N ; i++){
+      for(int j = 0; j < N ; j++){
+         cin >> paper[i][j];
+      }
+   }
+   
+   div_check(N,0,0);
+   
+   cout << ans[2] << endl;
+   cout << ans[0] << endl;
+   cout << ans[1] << endl;
+
+   return 0;   
+}
