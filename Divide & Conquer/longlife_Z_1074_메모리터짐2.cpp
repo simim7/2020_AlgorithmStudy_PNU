@@ -28,7 +28,7 @@ void find_order(us x, us y, us sz)
 	}
 	else{
 		sz /= 2;
-		find_order(x,y,sz);			// 1) 상좌 
+		find_order(x,y,sz);				// 1) 상좌 
 		find_order(x,y+sz,sz);			// 2) 상우 
 		find_order(x+sz,y,sz);			// 3) 하좌 
 		find_order(x+sz,y+sz,sz);		// 4) 하우 
@@ -40,9 +40,10 @@ void find_order(us x, us y, us sz)
 
 int main(void)
 {
-	us N, sz=2, cnt=0;
+	char N; 
+	us sz=2;
 	cin >> N >> row >> col;
-	for(us i=0;i<N;++i)
+	for(char i='0';i<N;++i)
 		sz*=2;
 	
 	find_order(0,0,sz);
